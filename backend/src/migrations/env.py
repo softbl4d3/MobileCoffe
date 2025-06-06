@@ -8,7 +8,9 @@ print(f"DEBUG: sys.path before import: {sys.path}")
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from db.db import Base
-from models.users import UserDb  
+from models.users import UserDb
+from models.cafes import CafeDb
+
 from alembic import context
 from config.config import settings
 
@@ -70,7 +72,9 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection, 
+            target_metadata=target_metadata,
+            compare_server_default=True,
         )
 
         with context.begin_transaction():

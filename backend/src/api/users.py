@@ -13,7 +13,7 @@ async def get_users():
     
 @router.post("/")
 async def create_user(
-    user: UserAdd,
+    user: UserAdd, # TODO : сделать генерацию id на стороне сервера или на стороне клиента? 
     user_service: Annotated[UsersService, Depends(users_service)]
     ):
 
